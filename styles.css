@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(
         to top, 
-        rgba(0, 0, 0, 0.5) 5%, /* You might want a slightly darker start for the gradient */
+        rgba(0, 0, 0, 0) 5%, /* You might want a slightly darker start for the gradient */
         rgba(0, 0, 0, 0) 5%
     ), 
     url('img/bg.png'); /* Your image */
@@ -34,15 +34,15 @@ body {
 }
 
 .navbar-left h1{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    overflow: hidden;
     color: white;
     font-weight: bold;
     font-size: 20px;
     line-height: 1.5;
     cursor: pointer;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    overflow: hidden;
 }
 
 .navbar-right {
@@ -85,25 +85,75 @@ body {
     );
 }
 
+.navbar-mid{
+    padding-right: 30px;
+}
 
-
-
-.web-header {
+.navbar-mid ul{
     display: flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    list-style: none;
     align-items: center;
-    margin-top: 45px;
-    margin-left: 15px;
-    margin-bottom: 0;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.navbar-mid ul li a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.navbar-mid ul li a:hover {
+    color: blue;
+} 
+
+.navbar-mid ul li a:active{
+    opacity: 0.8;
 }
 
 
 
 
+
+
+
+
+
+
+
+
 .main-section {
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.aitools .codingwebsites .learningwebsites .others {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 60px;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.main-headers {
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    text-decoration: dotted;
+}
+
+.main-page{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    margin-bottom: 40px;
     padding: 20px;
 }
 
@@ -112,9 +162,12 @@ body {
     flex-direction: column;
     border: 1px solid black;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 20px;
+    box-shadow: 1px 1px 20px burlywood;
 }
+
+
 
 .main-pages:hover {
     scale: 1.1;
@@ -124,26 +177,33 @@ body {
 }
 
 .main-pages h3 {
-    color: gray;
+    color: white;
     font-weight: bolder;
 }
 
 .main-pages p{
-    color: grey;
+    color: white;
 }
 
 .main-pages button {
     padding: 4px 20px;
     cursor: pointer;
     background: transparent;
-    color: grey;
+    color: white;
 }
 
 .main-pages button:hover{
-    background-color: rgb(0, 0, 255, 0.5);
+    background-color: rgba(25, 241, 6, 0.5);
     transition: color 0.3s;
     scale: 1.2;
+    box-shadow: 1px 1px 20px rgb(0, 255, 47);
 }
+
+
+
+
+
+
 
 
 
@@ -153,9 +213,12 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #191818;
+    background-color: #000;
     color: #808080;
-    padding: 20px;
+    padding: 20px 60px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
 }
 
 .footer-link {
