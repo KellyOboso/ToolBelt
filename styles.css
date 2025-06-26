@@ -98,13 +98,59 @@ body {
     flex-wrap: nowrap;
     flex-shrink: 0;
     overflow: hidden;
+    font-size: 20px;
 }
 .navbar-mid ul li a:hover {
-    color: blue;
+    color: greenyellow;
+    text-decoration: underline blue;
 } 
 .navbar-mid ul li a:active{
     opacity: 0.8;
 }
+
+
+.bg {
+    width: 100%;
+    min-height: 1000px; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.6), 
+        rgba(0, 0, 0, 0.4) 
+    ), url('img/bg3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-p {
+    width: 80%; 
+    max-width: 700px; 
+    margin-bottom: 20px;
+    text-align: center; 
+    box-sizing: border-box; 
+    padding: 10px 20px;
+}
+
+.bg-p p {
+    color: rgb(226, 222, 222);
+    font-size: 28px;
+    line-height: 1.4;
+    margin: 0; 
+}
+
+.bg-p:first-child p {
+    font-size: 48px; 
+    font-weight: bold;
+    margin-bottom: 10px; 
+}
+
+
+
 .main-section {
     padding: 20px;
     padding-top: 50px;
