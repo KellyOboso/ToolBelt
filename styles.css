@@ -1,17 +1,44 @@
-body {
-    background: linear-gradient(
-        to top, 
-        rgba(0, 0, 0, 0) 5%, /* You might want a slightly darker start for the gradient */
-        rgba(0, 0, 0, 0) 5%
-    ), 
-    url('img/bg.png'); /* Your image */
-    background-size: cover; /* These will now apply to both */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: gray; /* This will be a fallback if the image fails to load */
+html {
+  scroll-behavior: smooth;
 }
+
+body {
+  background: 
+    radial-gradient(circle at center, rgba(0, 0, 50, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%),
+    url('assets/img/pexels-luis-gomes-166706-546819.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.toast {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 2000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
 .navbar {
-    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,7 +57,8 @@ body {
     z-index: 1000;
     transition: background-color 0.3s;
 }
-.navbar-left h1{
+
+.navbar-left span{
     display: flex;
     flex-wrap: nowrap;
     flex-shrink: 0;
@@ -40,10 +68,45 @@ body {
     font-size: 20px;
     line-height: 1.5;
     cursor: pointer;
-    padding: 40px;
+    padding: 30px;
 }
-.navbar-right {
-    visibility: hidden;
+
+.navbar-left :hover {
+    transform: rotateX(-5px);
+    letter-spacing: 0.5;
+}
+
+.navbar-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .navbar-mid ul {
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 0 0 0 10px;
+    width: 200px;
+    display: none;
+  }
+
+  .navbar-mid.active ul {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}
+/* .navbar-right {
     display: flex;
     align-items: center;
     padding-right: 30px;
@@ -67,7 +130,7 @@ body {
 .navbar-right button:active {
     opacity: 0.6;
     transition: opacity 0.2s ease-in-out;
-}
+} */
 .navbar.scrolled{
     background-color: rgba(0, 0, 0, 0);
     backdrop-filter: blur(
@@ -77,6 +140,20 @@ body {
         10px
     );
 }
+
+.glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
 .navbar-mid{
     padding: 30px;
 }
@@ -91,63 +168,77 @@ body {
     gap: 10px;
     cursor: pointer;
 }
-.navbar-mid ul li a{
-    text-decoration: none;
-    color: white;
+.navbar-mid ul a{
     display: flex;
     flex-wrap: nowrap;
     flex-shrink: 0;
     overflow: hidden;
-    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
-.navbar-mid ul li a:hover {
+.navbar-mid ul a:hover, 
+.navbar-mid ul a:active {
     color: greenyellow;
-    text-decoration: underline blue;
+    background: rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: translateY(-5px);
 } 
-.navbar-mid ul li a:active{
+.navbar-mid ul a:active{
     opacity: 0.8;
 }
 
 
-.bg {
-    width: 100%;
-    min-height: 1000px; 
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center; 
-
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.6), 
-        rgba(0, 0, 0, 0.4) 
-    ), url('img/bg3.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.bg.glass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80vh;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  margin: 2rem;
+  padding: 3rem;
+  color: #fff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  margin-top: 100px;
 }
 
 .bg-p {
-    width: 80%; 
-    max-width: 700px; 
-    margin-bottom: 20px;
-    text-align: center; 
-    box-sizing: border-box; 
-    padding: 10px 20px;
+  margin: 1rem 0;
 }
 
-.bg-p p {
-    color: rgb(226, 222, 222);
-    font-size: 28px;
-    line-height: 1.4;
-    margin: 0; 
+.main-title p {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #00b4db, #0083b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.bg-p:first-child p {
-    font-size: 48px; 
-    font-weight: bold;
-    margin-bottom: 10px; 
+.subtitle p {
+  font-size: 1.25rem;
+  max-width: 700px;
+  color: #dcdcdc;
+  line-height: 1.6;
 }
+
+.tagline p {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
 
 
 
@@ -155,10 +246,13 @@ body {
     padding: 20px;
     padding-top: 50px;
 }
-.aitools .codingwebsites .learningwebsites .others {
+.aitools,
+.codingwebsites,
+.learningwebsites,
+.others {
     display: flex;
     flex-direction: column;
-    padding: 20px 60px;
+    padding: 20px 20px;
     gap: 30px;
     margin-bottom: 20px;
 }
@@ -171,24 +265,25 @@ body {
 }
 .main-page{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 40px;
     padding: 20px;
+    border-radius: 20px;
 }
 .main-pages {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid rgb(178, 176, 176);
+    height: 200px;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+    border-radius: 20px;
 }
 .main-pages:hover {
-    scale: 1.1;
+    transform: translateY(-5px);
     transition: scale 0.3s ease-in-out;
     transition: color 0.3s ease-in-out;
-    background-color: rgb(45, 45, 158, 0.3);
-    box-shadow: 1px 1px 2px 3px rgb(13, 226, 20);
 }
 .main-pages h3 {
     color: white;
@@ -214,8 +309,6 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #000;
-    color: #808080;
     padding: 20px 60px;
     display: flex;
     flex-wrap: nowrap;
@@ -228,5 +321,50 @@ body {
 }
 .footer-link:hover {
     cursor: pointer;
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: lime;
+  width: 0;
+  z-index: 999;
+}
+
+input#search {
+  display: block;
+  margin: 100px 20px 20px;
+  padding: 10px;
+  width: 250px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.main-pages {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.main-pages.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  margin-top: 40px;
+}
+.footer a {
+  color: lime;
+  text-decoration: none;
 }
 
