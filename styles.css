@@ -5,7 +5,7 @@ html {
 body {
   background: 
     radial-gradient(circle at center, rgba(0, 0, 50, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%),
-    url('assets/img/pexels-luis-gomes-166706-546819.jpg');
+    url('img/pexels-luis-gomes-166706-546819.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
